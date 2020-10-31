@@ -6,12 +6,11 @@ namespace variables
     {
         static void Main(string[] args)
         {
-            int days_in_week= 7;
-            Console.WriteLine(days_in_week);
-            double weeks_in_year= 52.3;
-            System.Console.WriteLine(weeks_in_year);
-            double days_in_year = days_in_week * weeks_in_year;
-            System.Console.WriteLine(days_in_year);
+            string sun= " Солнце";
+            string it_is= " - это";
+            string star = " звезда";
+            string sun_it_is_star=sun+it_is+star;
+            System.Console.WriteLine(sun_it_is_star);
         }
     }
 }
