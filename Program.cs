@@ -6,11 +6,14 @@ namespace variables
     {
         static void Main(string[] args)
         {
-            string sun= " Солнце";
-            string it_is= " - это";
-            string star = " звезда";
-            string sun_it_is_star=sun+it_is+star;
-            System.Console.WriteLine(sun_it_is_star);
+            double nubmer = double.Parse(Console.ReadLine());
+            bool cheack = nubmer>0;
+            if(cheack){
+                System.Console.WriteLine("Ваше число больше нуля");
+            } 
+            else{
+                System.Console.WriteLine("Ваше число меньше нуля");
+            }
         }
     }
 }
