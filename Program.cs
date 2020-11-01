@@ -6,13 +6,13 @@ namespace variables
     {
         static void Main(string[] args)
         {
-            int[] intArray = {1,2,3,4,0,5,6};
-            int i=0;
-            while (intArray[i]!=0)
+            // int[] intArray = {1,2,3,4,0,5,6};
+            string i;
+            do
             {
-                System.Console.WriteLine(intArray[i]);
-                i++;
-            }
+                i = Console.ReadLine();
+                System.Console.WriteLine("hello world");
+            } while (i =="1");
             
         } 
     }
