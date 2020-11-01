@@ -6,15 +6,13 @@ namespace variables
     {
         static void Main(string[] args)
         {
-            int[] intArray = new int[3];
-            System.Console.Write("Введите первое число: ");
-            intArray[0] = int.Parse(Console.ReadLine());
-            System.Console.Write("Введите второе число: ");
-            intArray[1] = int.Parse(Console.ReadLine());
-            System.Console.Write("Введите третие число: ");
-            intArray[2] = int.Parse(Console.ReadLine());
-            System.Console.Write("Числа в обратном порядке: ");
-            System.Console.WriteLine($"{intArray[2]}, {intArray[1]}, {intArray[0]}");
+            int[] intArray = new int[6]{1,2,3,4,5,6};
+            
+            for (int i = 1; i < intArray.Length-1; i++)           
+            {
+                System.Console.WriteLine(intArray[i]);
+            }
+            
         } 
     }
 }
