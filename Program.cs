@@ -6,11 +6,12 @@ namespace variables
     {
         static void Main(string[] args)
         {
-            int[] intArray = new int[6]{1,2,3,4,5,6};
-            Array.Reverse(intArray);
-            foreach (int i in intArray)
+            int[] intArray = {1,2,3,4,0,5,6};
+            int i=0;
+            while (intArray[i]!=0)
             {
-                System.Console.WriteLine(i);
+                System.Console.WriteLine(intArray[i]);
+                i++;
             }
             
         } 
