@@ -1,25 +1,25 @@
 using System;
 using System.Threading;
-namespace variables
+namespace massions_on_the_course_C__main
 {
-    internal class ATM
+    public class ATM
     {
         //Адрес банкомата
-        public const double address = 3213;
+         const double address = 3213;
         //ФИО
-        public string name;
-        public string surname;
-        public string middlename;
+         public string name;
+         public string surname;
+         public string middlename;
         //Счет
-        public  double sumMoneyTenge;
-        public  double sumMoneyDollar;
-        public double sumMoneyRubl;
+        static double sumMoneyTenge;
+        static double sumMoneyDollar;
+        static double sumMoneyRubl;
         //Значения для методов
-        public  bool giveMoney=false;
-        public bool takeMoney=false;
-        public  bool tradeMoney=false;
-        public  bool tradeMoneyDollar=false;
-        public  bool tradeMoneyRubl=false;
+            bool giveMoney=false;
+         bool takeMoney=false;
+          bool tradeMoney=false;
+          bool tradeMoneyDollar=false;
+          bool tradeMoneyRubl=false;
 //Метод для зачесления денег
         public static void TakeMoney()
         {
@@ -28,8 +28,8 @@ namespace variables
             {
                     System.Console.Write("Введите сумму для зачесления: ");
                     tenge = double.Parse(Console.ReadLine());
-                    sumMoney1.sumMoneyTenge = sumMoney1.sumMoneyTenge + tenge;
-                    System.Console.WriteLine($"Вы зачислили данную сумму: {sumMoney1.sumMoneyTenge} тенге");
+                    ATM.sumMoneyTenge += ATM.sumMoneyTenge + tenge;
+                    System.Console.WriteLine($"Вы зачислили данную сумму: {ATM.sumMoneyTenge} тенге");
                     ATM.quation();
             }
         }
@@ -38,23 +38,19 @@ namespace variables
         public static void GiveMoney()  
     {
         ATM sumMoney1 = new ATM();
-        ConsoleKeyInfo keyInfo;
-        double sumMoney;
+        double sumMoney0=0;
             System.Console.WriteLine("Какую сумму вы желаете снять?");
-            sumMoney = double.Parse(Console.ReadLine());
-            sumMoney1.sumMoneyTenge = sumMoney1.sumMoneyTenge - sumMoney;
-            System.Console.WriteLine($"У вас на счету осталось: {sumMoney1.sumMoneyTenge} тенге");
-            System.Console.WriteLine("Да-1");
-                    System.Console.WriteLine("Нет-2");
-                    System.Console.WriteLine();
-                    keyInfo = Console.ReadKey();
-                    System.Console.WriteLine();
-                    if(keyInfo.Key == ConsoleKey.D1){
-                        ATM.Menu();
-                    }
-                    else if(keyInfo.Key == ConsoleKey.D2){
-                        
-                    }
+            sumMoney0 = double.Parse(Console.ReadLine());
+            if(sumMoney0<=ATM.sumMoneyTenge)
+            {
+            ATM.sumMoneyTenge = ATM.sumMoneyTenge - sumMoney0;
+            System.Console.WriteLine($"У вас на счету осталось: {ATM.sumMoneyTenge} тенге");
+            ATM.quation();
+            }
+            else{
+                System.Console.WriteLine("Недостаточно средст на счету");
+                ATM.quation();
+                }
     }
 //Метод который переводит тенге в рубли или в доллары
      public static void TradeMoney()
@@ -63,22 +59,45 @@ namespace variables
             ConsoleKeyInfo keyInfo;
             double tenge;
             
-                if(sumMoney1.tradeMoneyDollar == true){
-                    System.Console.WriteLine("Какую сумму в тенге вы хотите перевести в долары?");    
+                System.Console.WriteLine("Хотите перевести деньги в долларах или рублях");
+                System.Console.WriteLine("Доллар-1");
+                System.Console.WriteLine("Рубль-2");
+                keyInfo = Console.ReadKey();
+                if(keyInfo.Key == ConsoleKey.D1){
+                    System.Console.WriteLine("Какую сумму в тенге вы хотите перевести в доллары?");    
                     tenge = double.Parse(Console.ReadLine());
-                    sumMoney1.sumMoneyTenge = sumMoney1.sumMoneyTenge - tenge;
-                    sumMoney1.sumMoneyDollar += tenge % 0.0023;
+                    if(tenge<=ATM.sumMoneyTenge){
+                    ATM.sumMoneyTenge = ATM.sumMoneyTenge - tenge;
+                    
+                    ATM.sumMoneyDollar = tenge % 0.0023;
+                    System.Console.WriteLine($"На счету осталось в тенге: {ATM.sumMoneyTenge} тенге");
+                    System.Console.WriteLine($"На счету осталось в рублях: {ATM.sumMoneyDollar} рублей");
+                    ATM.quation();
+                    }
+                    else{
+                        System.Console.WriteLine("Недостаточно средст на счету");
+                        ATM.quation();
+                    }
                 }
-                else if(sumMoney1.tradeMoneyRubl == true){
-                    System.Console.WriteLine("Какую сумму в тенге вы хотите перевести в долары?");    
+                else if(keyInfo.Key == ConsoleKey.D2){
+                    System.Console.WriteLine("Какую сумму в тенге вы хотите перевести в рубли?");    
                     tenge = double.Parse(Console.ReadLine());
-                    sumMoney1.sumMoneyTenge = sumMoney1.sumMoneyRubl- tenge;
-                    sumMoney1.sumMoneyRubl = sumMoney1.sumMoneyRubl+ tenge % 0.18;
+                    if(tenge>=ATM.sumMoneyTenge){
+                    ATM.sumMoneyTenge = ATM.sumMoneyRubl- tenge;
+                    ATM.sumMoneyRubl = ATM.sumMoneyRubl+ tenge % 0.18;
+                    System.Console.WriteLine($"На счету осталось в тенге: {ATM.sumMoneyTenge} тенге");
+                    System.Console.WriteLine($"На счету осталось в рублях: {ATM.sumMoneyRubl} рублей");
+                    ATM.quation();
+                    }
+                    else{
+                        System.Console.WriteLine("Недостаточно средст на счету");
+                        ATM.quation();
+                    }
                 }
             else{
-                ATM.Menu();
+                ATM.quation();
             }
-            ATM.quation();
+            
             
             }
             public static void Menu(){
@@ -98,11 +117,8 @@ namespace variables
             ATM.GiveMoney();
             }
             else if(keyInfo.Key == ConsoleKey.D3){
-            atm1.tradeMoney= true;
-            System.Console.WriteLine("Перевести в доллары- 1");
-            System.Console.WriteLine("Перевести в рубли- 2");
-            System.Console.WriteLine();
-            ATM.quation();
+            ATM.TradeMoney();
+            
             }
        
 
@@ -119,8 +135,10 @@ namespace variables
                         ATM.Menu();
                     }
                     else if(keyInfo.Key == ConsoleKey.D2){
-                        Console.ReadKey();
+                        
                     }
+        
+                }
+            }
         }
-}
-}
+
